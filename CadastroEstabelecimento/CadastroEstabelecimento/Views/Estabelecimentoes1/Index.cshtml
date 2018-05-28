@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CadastroEstabelecimento.Models.Estabelecimento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<h2>Estabelecimentos</h2>
+
+<p>
+    @Html.ActionLink("Adicionar Novo Estabelecimento", "Create")
+</p>
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Estabelecimento
+            </th>
+
+            <th>
+                Razão Social
+            </th>
+            <th>
+                CNPJ
+            </th>
+            <th>
+                Opções
+            </th>
+
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                Estabelecimento
+            </th>
+
+            <th>
+                Razão Social
+            </th>
+            <th>
+                CNPJ
+            </th>
+
+            <th>
+                Opções
+            </th>
+
+        </tr>
+    </tfoot>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RazaoSocial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeFantasia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cnpj)
+                </td>
+                <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdEstabelecimento }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.IdEstabelecimento }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.IdEstabelecimento })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
